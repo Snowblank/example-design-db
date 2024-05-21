@@ -1,11 +1,8 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../..";
+import sequelize from "..";
 import Discount from "./discount";
-
-enum EProductType {
-    CODE,
-    ITEM
-}
+import Bundle from "./bundle";
+import BundleProduct from "./bundleproduct";
 
 const Product = sequelize.define("Product", {
     name: {
@@ -16,10 +13,6 @@ const Product = sequelize.define("Product", {
     details: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    type: {
-        type: DataTypes.INTEGER, 
-        allowNull: false,  
     },
     price: {
         type: DataTypes.FLOAT,
@@ -44,5 +37,6 @@ const Product = sequelize.define("Product", {
 });
 
 Product.belongsTo(Discount, { foreignKey: 'discountId' });
+Product.belongsToMany(Bundle, { through: BundleProduct, foreignKey: 'productId' });
 
 export default Product;

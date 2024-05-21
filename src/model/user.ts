@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../..";
+import sequelize from "..";
 import ItemCode from "./item_code";
 
 const User = sequelize.define("User", {

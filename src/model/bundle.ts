@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../..";
+import sequelize from "..";
+import Product from "./product";
+import BundleProduct from "./bundleproduct";
 
 const Bundle = sequelize.define("Bundle", {
     id: {
@@ -17,15 +19,10 @@ const Bundle = sequelize.define("Bundle", {
         type: DataTypes.FLOAT,
         allowNull: false
     },
-    productId: {
-        type: DataTypes.ARRAY(DataTypes.UUID),
-        references: {
-            model: 'products',
-            key: 'id'
-        }
-    },
 }, {
     tableName: "bundles"
 });
+
+Bundle.belongsToMany(Product, { through: BundleProduct, foreignKey: 'bundleId' });
 
 export default Bundle;

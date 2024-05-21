@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../..";
+import sequelize from "..";
 import Product from "./product";
 
 const Discount = sequelize.define("Discount", {
