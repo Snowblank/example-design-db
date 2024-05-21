@@ -1,0 +1,10 @@
+{
+  "name": "example-design-db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Snowblank/example-design-db.git",
+  "license": "MIT",
+  "dependencies": {
+    "sequelize": "^6.37.3"
+  }
+}
