@@ -4,6 +4,12 @@ import Bundle from "./bundle";
 import Product from "./product";
 
 const BundleProduct = sequelize.define("BundleProduct", {
+    id: {
+        type: DataTypes.UUID(),
+        defaultValue: DataTypes.UUIDV4(),
+        primaryKey: true,
+        allowNull: false
+    },
     bundleId: {
         type: DataTypes.UUID,
         allowNull: false,
