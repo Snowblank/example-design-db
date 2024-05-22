@@ -3,6 +3,7 @@ import sequelize from "..";
 import Discount from "./discount";
 import Bundle from "./bundle";
 import BundleProduct from "./bundleproduct";
+import Game from "./game";
 
 const Product = sequelize.define("Product", {
     id: {
@@ -24,6 +25,13 @@ const Product = sequelize.define("Product", {
         type: DataTypes.FLOAT,
         allowNull: false
     },
+    gameId: {
+        type: DataTypes.UUID,
+        references: {
+            model: 'games',
+            key:'id'
+        }
+    },
     discountId: {
         type: DataTypes.UUID,
         references: {
@@ -42,6 +50,7 @@ const Product = sequelize.define("Product", {
     tableName: "products"
 });
 
+Product.belongsTo(Game, { foreignKey: 'gameId' });
 Product.belongsTo(Discount, { foreignKey: 'discountId' });
 Product.belongsToMany(Bundle, { through: BundleProduct, foreignKey: 'productId' });
 
