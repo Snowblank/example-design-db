@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "..";
 import User from "./user";
+import Game from "./game";
 
 const ItemCode = sequelize.define("ItemCode", {
     id: {
@@ -19,9 +20,17 @@ const ItemCode = sequelize.define("ItemCode", {
     },
     userId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'users',
+            key: 'id'
+        }
+    },
+    gameId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'games',
             key: 'id'
         }
     },
@@ -34,5 +43,6 @@ const ItemCode = sequelize.define("ItemCode", {
 })
 
 ItemCode.belongsTo(User, { foreignKey: 'userId' });
+ItemCode.belongsTo(Game, { foreignKey: 'gameId' });
 
 export default ItemCode;
